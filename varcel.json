@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "name": "kachelin-backend",
+    "builds": [{
+        "src": "kachelin/wsgi.py",
+        "use": "@ardnt/now-python-wsgi",
+        "config": { "maxLambdaSize": "30mb" }
+    }],
+    "routes": [{
+        "src": "/(.*)",
+        "dest": "kachelin/wsgi.py"
+    }]
+}
