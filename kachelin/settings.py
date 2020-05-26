@@ -20,11 +20,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv(dotenv_path=BASE_DIR + '/.env')
 
+if (os.environ.get("SECERT_KEY")) == None:
+    ENV_SECRET_KEY = os.environ['SECERT_KEY']
+    ENV_DB_HOST = os.environ['DB_HOST']
+    ENV_DB_NAME = os.environ['DB_NAME']
+    ENV_DB_USER = os.environ['DB_USER']
+    ENV_DB_PASSWORD = os.environ['DB_PASSWORD']
+    ENV_DB_PORT = os.environ['DB_PORT']
+else:
+    ENV_SECRET_KEY = os.environ.get("SECERT_KEY")
+    ENV_DB_HOST = os.environ.get("DB_HOST")
+    ENV_DB_NAME = os.environ.get("DB_NAME")
+    ENV_DB_USER = os.environ.get("DB_USER")
+    ENV_DB_PASSWORD = os.environ.get("DB_PASSWORD")
+    ENV_DB_PORT = os.environ.get("DB_PORT")
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECERT_KEY")
+SECRET_KEY = ENV_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -108,11 +124,11 @@ JWT_AUTH = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get("DB_HOST"),
-        'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'PORT': os.environ.get("DB_PORT"),
+        'HOST': ENV_DB_HOST,
+        'NAME': ENV_DB_NAME,
+        'USER': ENV_DB_USER,
+        'PASSWORD': ENV_DB_PASSWORD,
+        'PORT': ENV_DB_PORT
     }
 }
 
@@ -157,3 +173,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
