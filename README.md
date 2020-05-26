@@ -3,7 +3,8 @@ SPARCS Project
 
 ## START THE SERVER
 ```
-source env/bin/activate
+source .venv/bin/activate
+pip3 install -r requirements.txt
 cp .env.example .env
 Check the .env
 python3 manage.py migrate
