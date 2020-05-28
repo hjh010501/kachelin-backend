@@ -43,9 +43,9 @@ else:
 SECRET_KEY = ENV_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [".now.sh"]
+ALLOWED_HOSTS = [".now.sh", "127.0.0.1"]
 
 SITE_ID = 1
 
@@ -99,12 +99,15 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
+
+# eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6ImtpZGV2ZWxvcDIiLCJleHAiOjE1OTA2OTQ5ODUsImVtYWlsIjoidXNlMjJyQGV4YW1wbGUuY29tIiwib3JpZ19pYXQiOjE1OTA2OTMxODV9.d08WJl6GjujtteBMXWmmvm2ZuAFuhDkWs9ps74OoZcU
 
 WSGI_APPLICATION = 'kachelin.wsgi.application'
 
@@ -135,6 +138,16 @@ DATABASES = {
 ACCOUNT_EMAIL_REQUIRED = False
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
