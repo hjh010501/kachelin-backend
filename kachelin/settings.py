@@ -98,6 +98,11 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser',
+    ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
@@ -140,6 +145,7 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 SWAGGER_SETTINGS = {
+    'JSON_EDITOR': True,
     'SECURITY_DEFINITIONS': {
         'api_key': {
             'type': 'apiKey',
