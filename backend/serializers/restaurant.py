@@ -10,3 +10,8 @@ class RestaurantCreateSerializer(RestaurantSerializer):
     class Meta:
         model = Restaurant
         fields = ('name', 'content', 'location')
+
+class RestaurantUpdateSerializer(RestaurantSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ('name', 'content', 'location')
