@@ -126,6 +126,12 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7), 
 }
 
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'backend.serializers.user.LoginSerializer',
+    'USER_DETAILS_SERIALIZER': 'backend.serializers.user.UserSerializer'
+}
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
