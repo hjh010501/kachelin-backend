@@ -9,14 +9,14 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         depth = 1
-        fields = ('name', 'content', 'location', 'created_by', 'created_at', 'reviews')
+        fields = ('pk', 'name', 'content', 'location', 'longitude', 'latitude', 'created_by', 'created_at', 'reviews')
 
 class RestaurantCreateSerializer(RestaurantSerializer):
     class Meta:
         model = Restaurant
-        fields = ('name', 'content', 'location')
+        fields = ('name', 'content', 'location', 'longitude', 'latitude')
 
 class RestaurantUpdateSerializer(RestaurantSerializer):
     class Meta:
         model = Restaurant
-        fields = ('name', 'content', 'location')
+        fields = ('name', 'content', 'location', 'longitude', 'latitude')
