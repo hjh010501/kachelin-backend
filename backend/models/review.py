@@ -8,14 +8,13 @@ class Review(models.Model):
     
     restaurant = models.ForeignKey(
         to=Restaurant,
-        related_name='reviews',
+        related_name='review_set',
         on_delete=models.CASCADE
     )
     content = models.TextField(verbose_name='리뷰 내용')
     star_rating =models.PositiveIntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name='별점 (5점 만점)')
     writer = models.ForeignKey(
         to=User,
-        related_name='reviews',
         on_delete=models.CASCADE
     )
     
